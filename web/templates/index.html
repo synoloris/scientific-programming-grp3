@@ -16,8 +16,27 @@
 
     <body>
         <div id="map"></div>
-        <script src="static/universal.js" />
-        </script>
+        <script src="static/universal.js"></script>
+        <div class="menu">
+            <select id="category" onchange="changeUrl()">
+                {% for type in types %}
+                    {% if activeCy == type['name']: %}
+                    <option selected="" value="{{ type['name'] }}">{{ type['text'] }}</option>
+                    {% else %}
+                    <option value="{{ type['name'] }}">{{ type['text'] }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <select id="year" onchange="changeUrl()">
+                {% for year in years %}
+                    {% if activeYr == year: %}
+                    <option selected="" value="{{ year }}">{{ year }}</option>
+                    {% else %}
+                    <option value="{{ year }}">{{ year }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
         <script>
             {% for marker in markers %}
             L.marker([{{ marker['lat'] }}, {{ marker['lon'] }}]).addTo(map)
