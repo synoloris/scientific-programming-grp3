@@ -40,8 +40,7 @@
         <script>
             {% for marker in markers %}
             L.marker([{{ marker['lat'] }}, {{ marker['lon'] }}]).addTo(map)
-                .bindPopup("{{ marker['popup'] }}")
-                .openPopup();
+                .bindPopup("{{ marker['popup']|safe }}");
             {% endfor %}
         </script>
     </body>
